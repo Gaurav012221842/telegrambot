@@ -19,3 +19,14 @@ bot.onText(/\/joke/,async (msg)=>{
     const response=await axios.get('https://official-joke-api.appspot.com/random_joke');
     bot.sendMessage(msg.chat.id,response.data.setup+'\n'+response.data.punchline);
 });
+
+bot.onText(/\/bitcoin/,async (msg)=>{
+    const response=await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+    const amount=response.data.bitcoin.usd;
+    bot.sendMessage(msg.chat.id, `The current price of Bitcoin is $${amount}`);
+});
+bot.onText(/\/etherum/,async (msg)=>{
+    const response=await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=inr');
+    const amount=response.data.ethereum.inr;
+    bot.sendMessage(msg.chat.id, `The current price of Etherum is $${amount}`);
+});
